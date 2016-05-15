@@ -53,18 +53,18 @@ public class StroreRL{
 			line = reader.readLine();
 			
 			while(line != null){
-			    if (!line.trim().equals(" ")) {
+			        if (!line.trim().equals(" ")) {
 					if (line.trim().equalsIgnoreCase("item_list")){
 						line = reader.readLine();
-                        if (line.trim().equals("{")) {
-                            line = reader.readLine();
-                            if (line != null) {
-                                if (line.trim().equalsIgnoreCase("item")) {
-                                    line = reader.readLine();
-                                    if (line.trim().equals("{")){
-										line = reader.readLine();
-										do{
-											if(!line.trim().equals(" ")){
+                                                        if (line.trim().equals("{")) {
+                                                                line = reader.readLine();
+                                                                if (line != null) {
+                                                                        if (line.trim().equalsIgnoreCase("item")) {
+                                                                                line = reader.readLine();
+                                                                                if (line.trim().equals("{")){
+										       line = reader.readLine();
+										        do{
+											     if(!line.trim().equals(" ")){
 												if(line.toLowerCase().trim().startsWith("code")){
 													code = Integer.parseInt(line.trim().substring(5).trim());
 												} else if(line.toLowerCase().trim().startsWith("model")){
@@ -118,7 +118,7 @@ public class StroreRL{
 												}
 											}
 											line = reader.readLine();
-									    } while(!line.trim().equals("}")) 
+									    } while(!line.trim().equals("}"));
 									}	
 								}
 							}
