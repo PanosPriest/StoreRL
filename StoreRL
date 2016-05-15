@@ -1,0 +1,148 @@
+import java.io.*;
+import java.util.*;
+
+public class StroreRL{
+	
+	private ArrayList <Item> items = new ArrayList<Item>;
+	private ArrayList <Sale> sales = new ArrayList<Sale>;
+	private ArrayList <Order> orders = new ArrayList<Order>;
+	//variables of the itemList
+	private int code = null;
+	private int year = null;
+	private int spins = null;
+	private int coolingcap = null;
+	private int refrigerationcap = null;
+	private int copies = null;
+	private double screendim = null;
+	private double megapixel = null;
+	private double screensize = null;
+	private String model = null;
+	private String item_type = null;
+	private String manufacturer = null;
+	private String energyclass = null;
+	private String washingcap = null;
+	private String opticalzoom = null;
+	private String digitalzoom = null;
+	private String type = null;
+	private String format = null;
+	private String screenres = null;
+	private String ports = null;
+	private String cpu = null;
+	private String graphics = null;
+	private String sound = null;
+	private String harddrive = null;	
+	
+	public ItemList loadFile(String data, ItemList it){
+	    
+        File f = null;
+		BufferedReader reader = null;
+		ItemList product = null;
+		String line;
+		
+		try {
+			f = new File(data);
+		} catch(NullPointerException e) {
+			System.err.println("File not found.");
+		}
+		try {
+			reader = new BufferedReader(new FileReader(f));
+		} catch(FileNotFoundException e) {
+			System.err.println("Error opening file.");
+		}
+		try {
+			line = reader.readLine();
+			
+			while(line != null){
+			    if (!line.trim().equals(" ")) {
+					if (line.trim().equalsIgnoreCase("item_list")){
+						line = reader.readLine();
+                        if (line.trim().equals("{")) {
+                            line = reader.readLine();
+                            if (line != null) {
+                                if (line.trim().equalsIgnoreCase("item")) {
+                                    line = reader.readLine();
+                                    if (line.trim().equals("{")){
+										line = reader.readLine();
+										do{
+											if(!line.trim().equals(" ")){
+												if(line.toLowerCase().trim().startsWith("code")){
+													code = Integer.parseInt(line.trim().substring(5).trim());
+												} else if(line.toLowerCase().trim().startsWith("model")){
+													model = line.trim().substring(6).trim();
+												} else if(line.toLowerCase().trim().startsWith("year")){
+													year = Integer.parseInt(line.trim().substring(5).trim());
+												} else if(line.toLowerCase().trim().startsWith("manufacturer")){
+													manufacturer = line.trim().substring(13).trim();
+												} else if(line.toLowerCase().trim().startsWith("price")){
+													price = line.trim().substring(6).trim();
+												} else if(line.toLowerCase().trim().startsWith("copies")){
+													copies = Integer.parseInt(line.trim().substring(7).trim());
+												} else if(line.toLowerCase().trim().startsWith("type")){
+													type = line.trim().substring(5).trim();
+												} else if(line.toLowerCase().trim().startsWith("cpu")){
+													cpu = line.trim().substring(4).trim();
+												} else if(line.toLowerCase().trim().startsWith("graphics")){
+													graphics = line.trim().substring(9).trim();
+												} else if(line.toLowerCase().trim().startsWith("sound")){
+													sound = line.trim().substring(6).trim();
+												} else if(line.toLowerCase().trim().startsWith("harddrive")){
+													harddrive = line.trim().substring(10).trim();
+												} else if(line.toLowerCase().trim().startsWith("screendim")){
+													screendim = Double.parseDouble(line.trim().substring(10).trim());
+												} else if(line.toLowerCase().trim().startsWith("screenres")){
+													screenres = line.trim().substring(10).trim();
+												} else if(line.toLowerCase().trim().startsWith("ports")){
+													ports = line.trim().substring(6).trim();
+												} else if(line.toLowerCase().trim().startsWith("format")){
+													format = line.trim().substring(7).trim();
+												} else if(line.toLowerCase().trim().startsWith("megapixel")){
+													megapixel = Double.parseDouble(line.trim().substring(10).trim());
+												} else if(line.toLowerCase().trim().startsWith("opticalzoom")){
+													opticalzoom = line.trim().substring(12).trim();
+												} else if(line.toLowerCase().trim().startsWith("digitalzoom")){
+													digitalzoom = line.trim().substring(12).trim();
+												} else if(line.toLowerCase().trim().startsWith("screensize")){
+													screensize = Double.parseDouble(line.trim().substring(11).trim());
+												} else if(line.toLowerCase().trim().startsWith("energyclass")){
+													energyclass = line.trim().substring(12).trim();
+												} else if(line.toLowerCase().trim().startsWith("coolingcap")){
+													coolingcap = Integer.parseInt(line.trim().substring(11).trim();
+												} else if(line.toLowerCase().trim().startsWith("refrigerationcap")){
+													refrigerationcap = Integer.parseInt(line.trim().substring(16).trim());
+												} else if(line.toLowerCase().trim().startsWith("washingcap")){
+													washingcap = line.trim().substring(11).trim();
+												} else if(line.toLowerCase().trim().startsWith("spins")){
+													spins = Integer.parseInt(line.trim().substring(6).trim());
+												} else if(line.toLowerCase().trim().startsWith("item_type")){
+													item_type = line.trim().substring(10).trim();
+												}
+											}
+											line = reader.readLine();
+									    } while(!line.trim().equals("}")) 
+									}	
+								}
+							}
+					    }
+					}
+				}
+			}
+		} catch(IOException e) {
+			System.err.println("Error closing file.");
+		}
+		return items;
+	}
+	
+	public SaleList loadFile(String data, SaleList sa){
+		
+		
+		
+	}
+	
+	public OrderList loadFile(String data, OrderList or){
+		
+		
+		
+	}
+	
+	
+}
