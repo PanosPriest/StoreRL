@@ -116,13 +116,14 @@ public class StroreRL{
 												} else if(line.toLowerCase().trim().startsWith("item_type")){
 													item_type = line.trim().substring(10).trim();
 												}
-											}
-											line = reader.readLine();
-									    } while(!line.trim().equals("}"));
+											    }
+										 	line = reader.readLine();
+									                } while(!line.trim().equals("}"));
+									                
 									}	
 								}
 							}
-					    }
+					        }
 					}
 				}
 			}
